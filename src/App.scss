@@ -1,3 +1,4 @@
+$color-darkbg: #242424;
 $color-primary: #ffffff;
 $color-secondary: #a9a9a9;
 $color-shadow: #000000;
@@ -18,7 +19,7 @@ $rainbow: linear-gradient(
 );
 
 body {
-    background-color: #242424;
+    background-color: $color-darkbg;
     margin: 0;
 
     font-family: sans-serif;
@@ -92,6 +93,8 @@ a:hover {
     gap: 0.5em;
 
     .timeBox {
+        position: relative;
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -109,15 +112,26 @@ a:hover {
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
+
+        .timePercent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #000000;
+            opacity: 65%;
+        }
     }
 
     .currentHour {
+        position: relative;
+
+        height: 100%;
+
         box-shadow: 0 0 20px $color-glow;
         color: $color-primary;
         font-weight: bold;
         font-size: 1.5em;
-
-        height: 100%;
     }
 
     .afterHour,
