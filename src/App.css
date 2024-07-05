@@ -2,12 +2,37 @@
     width: 100%;
     height: 100vh;
 
+    font-family: sans-serif;
+}
+
+.display-container {
+    width: 100%;
+    height: 100vh;
+
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.digital-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.timeGrid {
+.digitalClock {
+    font-size: 4em;
+    line-height: 1em;
+}
+
+.calendarDate {
+    font-size: 1em;
+}
+
+.timeBox-container {
     width: 80%;
     height: 12%;
     max-height: 100vh;
@@ -19,6 +44,7 @@
 
 .timeBox {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -50,15 +76,19 @@
 }
 
 .timeBox.currentHour {
+    box-shadow: 0 0 20px #999;
     color: #ffffff;
     font-weight: bold;
-    font-size: 2em;
-
-    box-shadow: 0 0 20px #999;
+    font-size: 1.5em;
 }
 
 .timeBox.afterHour {
     opacity: 20%;
+}
+
+.timeBox-container .timeBox-separator {
+    background-color: white;
+    width: 2px;
 }
 
 @media screen and (max-width: 800px) {

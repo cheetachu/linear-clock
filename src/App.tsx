@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import LinearClock from "./LinearClock";
+import DigitalClock from "./DigitalClock";
 
 function App() {
     const [date, setDate] = useState(new Date());
@@ -16,9 +17,10 @@ function App() {
     }, []);
 
     return (
-        <>
+        <div className="display-container">
+            <DigitalClock date={date} />
             <LinearClock date={date} />
-        </>
+        </div>
     );
 }
 
