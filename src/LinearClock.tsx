@@ -3,19 +3,14 @@ import { Fragment } from "react/jsx-runtime";
 interface ILinearClock {
     /** Date to show. */
     date: Date;
-
     /** First hour to show. (Can wrap across days).*/
     startHour?: number;
-
     /** Last hour to show. (Can wrap across days).*/
     endHour?: number;
-
     /** Separators appear after specified hours. */
     separators?: number[];
-
     /** Should separators be hidden? */
     hideSeparators?: boolean;
-
     /** If true, use 12-hour clock. */
     hour12?: boolean;
 }
@@ -26,53 +21,42 @@ function LinearClock({
     endHour,
     separators,
     hideSeparators,
-    hour12,
+    hour12 = false,
 }: ILinearClock) {
-    // Validate and defaults as needed
-    if (hideSeparators) {
-        separators = [];
-    } else if (!separators || separators.length === 0) {
-        separators = [11, 17];
-    }
+    // Prepare parameters
+    separators = _getValidSeparators(separators, hideSeparators);
+    startHour = _getValidHour(startHour, 6);
+    endHour = _getValidHour(endHour, 22);
 
-    if (!startHour && startHour !== 0) {
-        startHour = 6;
-    }
-    if (!endHour) {
-        endHour = 22;
-    }
-    startHour = _getValidHour(startHour);
-    endHour = _getValidHour(endHour);
+    // If we are outside of waking hours...
+    const nightMode = _isSleepHour(date.getHours(), startHour, endHour);
+    if (nightMode) {
+        // Override separators to mark waking hours
+        separators = [startHour, endHour];
 
-    // Populate array of hours to display (can wrap over to next day)
-    let hours: number[] = [];
-    for (let i = 0; (startHour + i) % 24 !== endHour; i++) {
-        hours.push((startHour + i) % 24);
+        // Show entire day
+        startHour = 0;
+        endHour = 23;
     }
-    hours.push(endHour);
 
     // Create boxes
-    const timeBoxes = hours.map((hour) => {
-        let hourClass = "";
+    const timeBoxes = _getWakingHourArray(startHour, endHour).map((hour) => {
+        let hourClasses = ["timeBox"];
         if (date.getHours() === hour) {
-            hourClass = " currentHour";
-        } else if (date.getHours() < hour) {
-            hourClass = " afterHour";
+            hourClasses.push("currentHour");
+        } else {
+            if (nightMode) {
+                hourClasses.push("sleepHour");
+            } else if (date.getHours() < hour) {
+                hourClasses.push("afterHour");
+            }
         }
 
-        let displayHour;
-        if (hour12) {
-            displayHour = hour % 12;
-            if (displayHour === 0) {
-                displayHour = 12;
-            }
-        } else {
-            displayHour = hour;
-        }
+        const displayHour = _getDisplayHour(hour, hour12);
 
         return (
             <Fragment key={"timebox-" + hour}>
-                <div className={"timeBox" + hourClass}>{displayHour}</div>
+                <div className={hourClasses.join(" ")}>{displayHour}</div>
                 {separators.includes(hour) && <div className="separator"></div>}
             </Fragment>
         );
@@ -81,14 +65,52 @@ function LinearClock({
     return <div className="timeBox-container">{timeBoxes}</div>;
 }
 
-function _getValidHour(hour: number | undefined) {
-    if (!hour || hour < 0) {
+function _getValidHour(hour: number | undefined, defaultNum: number) {
+    if (!hour) {
+        return defaultNum;
+    } else if (hour < 0) {
         return 0;
     } else if (hour > 23) {
         return 23;
     } else {
         return hour;
     }
+}
+
+function _getValidSeparators(separators?: number[], hideSeparators?: boolean) {
+    if (hideSeparators) {
+        return [];
+    } else if (!separators || separators.length === 0) {
+        return [11, 17];
+    } else {
+        return separators;
+    }
+}
+
+function _isSleepHour(hour: number, startHour: number, endHour: number) {
+    return (24 + hour - startHour) % 24 > (24 + endHour - startHour) % 24;
+}
+
+function _getWakingHourArray(startHour: number, endHour: number) {
+    let hours: number[] = [];
+    for (let i = 0; (startHour + i) % 24 !== endHour; i++) {
+        hours.push((startHour + i) % 24);
+    }
+    hours.push(endHour);
+    return hours;
+}
+
+function _getDisplayHour(hour: number, hour12: boolean) {
+    let displayHour;
+    if (hour12) {
+        displayHour = hour % 12;
+        if (displayHour === 0) {
+            displayHour = 12;
+        }
+    } else {
+        displayHour = hour;
+    }
+    return displayHour;
 }
 
 export default LinearClock;

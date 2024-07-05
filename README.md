@@ -15,7 +15,7 @@ Example: https://cheetahchu.github.io/linear-clock/?startHour=6&endHour=22
 
 SEPARATORS
 
-White lines separate chunks of the day. By default, they separate morning, afternoon, and evening. You can redefine them (and set however many you want) using this parameter. Each hour must be between 0 and 23.
+White lines separate chunks of the day. By default, they separate morning, afternoon, and evening. You can redefine them (and set however many you want) using this parameter. Each hour must be between 0 and 23, and must be between startHour and endHour.
 
 Separators will appear following the hour you specify.
 

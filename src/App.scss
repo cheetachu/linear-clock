@@ -120,15 +120,16 @@ a:hover {
         height: 100%;
     }
 
-    .afterHour {
+    .afterHour,
+    .sleepHour {
         opacity: 20%;
     }
-}
 
-.timeBox-container .separator {
-    background-color: $color-primary;
-    width: 2px;
-    height: 100%;
+    .separator {
+        background-color: $color-primary;
+        width: 1em;
+        height: 100%;
+    }
 }
 
 @media screen and (max-width: 800px) {
