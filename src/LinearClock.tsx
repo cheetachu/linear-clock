@@ -35,7 +35,7 @@ function LinearClock({
         separators = [11, 17];
     }
 
-    if (!startHour) {
+    if (!startHour && startHour !== 0) {
         startHour = 6;
     }
     if (!endHour) {
@@ -60,9 +60,19 @@ function LinearClock({
             hourClass = " afterHour";
         }
 
+        let displayHour;
+        if (hour12) {
+            displayHour = hour % 12;
+            if (displayHour === 0) {
+                displayHour = 12;
+            }
+        } else {
+            displayHour = hour;
+        }
+
         return (
             <Fragment key={"timebox-" + hour}>
-                <div className={"timeBox" + hourClass}>{hour}</div>
+                <div className={"timeBox" + hourClass}>{displayHour}</div>
                 {separators.includes(hour) && <div className="separator"></div>}
             </Fragment>
         );
