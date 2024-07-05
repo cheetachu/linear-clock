@@ -39,6 +39,7 @@
 
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     gap: 0.5%;
 }
 
@@ -49,7 +50,7 @@
     justify-content: center;
 
     width: 3.5%;
-    height: 100%;
+    height: 80%;
 
     font-size: 1.25em;
     text-shadow: 0.1em 0.1em 0.125em #000000;
@@ -80,6 +81,8 @@
     color: #ffffff;
     font-weight: bold;
     font-size: 1.5em;
+
+    height: 100%;
 }
 
 .timeBox.afterHour {
@@ -89,6 +92,7 @@
 .timeBox-container .timeBox-separator {
     background-color: white;
     width: 2px;
+    height: 100%;
 }
 
 @media screen and (max-width: 800px) {
