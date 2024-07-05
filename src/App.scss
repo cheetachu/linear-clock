@@ -1,3 +1,22 @@
+$color-primary: #ffffff;
+$color-secondary: #a9a9a9;
+$color-shadow: #000000;
+$color-glow: #999999;
+$rainbow: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 154, 0, 1) 10%,
+    rgba(208, 222, 33, 1) 20%,
+    rgba(79, 220, 74, 1) 30%,
+    rgba(63, 218, 216, 1) 40%,
+    rgba(47, 201, 226, 1) 50%,
+    rgba(28, 127, 238, 1) 60%,
+    rgba(95, 21, 242, 1) 70%,
+    rgba(186, 12, 248, 1) 80%,
+    rgba(251, 7, 217, 1) 90%,
+    rgba(255, 0, 0, 1) 100%
+);
+
 body {
     background-color: #242424;
     margin: 0;
@@ -35,15 +54,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
 
-.digitalClock {
-    font-size: 4em;
-    line-height: 1em;
-}
+    .digitalClock {
+        font-size: 4em;
+        line-height: 1em;
+    }
 
-.calendarDate {
-    font-size: 1em;
+    .calendarDate {
+        font-size: 1em;
+    }
 }
 
 .timeBox-container {
@@ -54,79 +73,71 @@ body {
     justify-content: space-evenly;
     align-items: center;
     gap: 0.5em;
+
+    .timeBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        height: 80%;
+        width: 100%;
+
+        font-size: 1.25em;
+        text-shadow: 0.1em 0.1em 0.125em $color-shadow;
+        text-align: center;
+        color: $color-secondary;
+
+        background: $rainbow;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .currentHour {
+        box-shadow: 0 0 20px $color-glow;
+        color: $color-primary;
+        font-weight: bold;
+        font-size: 1.5em;
+
+        height: 100%;
+    }
+
+    .afterHour {
+        opacity: 20%;
+    }
 }
 
-.timeBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    height: 80%;
-    width: 100%;
-
-    font-size: 1.25em;
-    text-shadow: 0.1em 0.1em 0.125em #000000;
-    text-align: center;
-    color: #a0a0a0;
-
-    background: linear-gradient(
-        90deg,
-        rgba(255, 0, 0, 1) 0%,
-        rgba(255, 154, 0, 1) 10%,
-        rgba(208, 222, 33, 1) 20%,
-        rgba(79, 220, 74, 1) 30%,
-        rgba(63, 218, 216, 1) 40%,
-        rgba(47, 201, 226, 1) 50%,
-        rgba(28, 127, 238, 1) 60%,
-        rgba(95, 21, 242, 1) 70%,
-        rgba(186, 12, 248, 1) 80%,
-        rgba(251, 7, 217, 1) 90%,
-        rgba(255, 0, 0, 1) 100%
-    );
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-.timeBox.currentHour {
-    box-shadow: 0 0 20px #999;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.5em;
-
-    height: 100%;
-}
-
-.timeBox.afterHour {
-    opacity: 20%;
-}
-
-.timeBox-container .timeBox-separator {
-    background-color: white;
+.timeBox-container .separator {
+    background-color: $color-primary;
     width: 2px;
     height: 100%;
 }
 
 @media screen and (max-width: 800px) {
-    .timeBox {
-        color: transparent;
-        text-shadow: none;
-        font-size: 1vw;
-    }
+    .timeBox-container {
+        .timeBox {
+            color: transparent;
+            text-shadow: none;
+            font-size: 1vw;
+        }
 
-    .timeBox.currentHour {
-        font-size: 3vw;
-        text-shadow: 0.1em 0.1em 0.125em #000000;
+        .timeBox.currentHour {
+            font-size: 3vw;
+            color: $color-primary;
+            text-shadow: 0.1em 0.1em 0.125em $color-shadow;
+        }
     }
 }
 
-@media screen and (max-height: 300px) {
-    .digitalClock {
-        font-size: 30vh;
-    }
+@media screen and (max-height: 200px) {
+    .digital-container {
+        .digitalClock {
+            font-size: 30vh;
+        }
 
-    .calendarDate {
-        font-size: 15vh;
+        .calendarDate {
+            font-size: 15vh;
+        }
     }
 }

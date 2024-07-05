@@ -30,9 +30,7 @@ function LinearClock({ date, startHour, endHour }: ILinearClock) {
         return (
             <Fragment key={"timebox-" + hour}>
                 <div className={"timeBox" + hourClass}>{hour}</div>
-                {separators.includes(hour) && (
-                    <div className="timeBox-separator"></div>
-                )}
+                {separators.includes(hour) && <div className="separator"></div>}
             </Fragment>
         );
     });
