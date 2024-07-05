@@ -30,17 +30,27 @@ function App() {
     const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
 
     return (
-        <div className="display-container">
-            <DigitalClock date={date} hour12={hour12} />
-            <LinearClock
-                date={date}
-                startHour={startHour}
-                endHour={endHour}
-                separators={separators}
-                hideSeparators={hideSeparators}
-                hour12={hour12}
-            />
-        </div>
+        <>
+            <div id="toolbar">
+                <a
+                    href="https://github.com/cheetahchu/linear-clock?tab=readme-ov-file#readme"
+                    target="_blank"
+                >
+                    Help
+                </a>
+            </div>
+            <div className="display-container">
+                <DigitalClock date={date} hour12={hour12} />
+                <LinearClock
+                    date={date}
+                    startHour={startHour}
+                    endHour={endHour}
+                    separators={separators}
+                    hideSeparators={hideSeparators}
+                    hour12={hour12}
+                />
+            </div>
+        </>
     );
 }
 

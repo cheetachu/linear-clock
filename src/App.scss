@@ -37,6 +37,23 @@ body {
     align-items: center;
 }
 
+a {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #7f85f6;
+    text-decoration: inherit;
+}
+a:hover {
+    color: #b7bbf8;
+}
+
+#toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+}
+
 .display-container {
     width: 100%;
     height: 50%;
