@@ -43,7 +43,8 @@ function LinearClock({
     const timeBoxes = _getWakingHourArray(startHour, endHour).map((hour) => {
         const isCurrentHour = date.getHours() === hour;
         const displayHour = _getDisplayHour(hour, hour12);
-        const hourPercent = (1 - date.getMinutes() / 60) * 100 + "%";
+        const hourPercent =
+            Math.round((1 - date.getMinutes() / 60) * 100) + "%";
 
         let hourClasses = ["timeBox"];
         if (isCurrentHour) {
@@ -59,7 +60,7 @@ function LinearClock({
         return (
             <Fragment key={"timebox-" + hour}>
                 <div className={hourClasses.join(" ")}>
-                    {displayHour}
+                    <div className="timeNumber">{displayHour}</div>
                     {isCurrentHour && (
                         <div
                             className="timePercent"
