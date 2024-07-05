@@ -1,5 +1,5 @@
 #root {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     display: flex;
@@ -8,22 +8,27 @@
 }
 
 .timeGrid {
-    width: 80vw;
+    width: 80%;
+    height: 12%;
+    max-height: 100vh;
 
     display: flex;
     justify-content: space-evenly;
-    gap: 0.5vmax;
+    gap: 0.5%;
 }
 
 .timeBox {
-    width: 5vmax;
-    height: 5vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-size: 1.8vmax;
-    text-shadow: 0.1vmax 0.1vmax 0.1vmax #000000;
+    width: 3.5%;
+    height: 100%;
+
+    font-size: 1.25em;
+    text-shadow: 0.1em 0.1em 0.125em #000000;
     text-align: center;
-    line-height: 5vmax;
-    color: #999999;
+    color: #a0a0a0;
 
     background: linear-gradient(
         90deg,
@@ -47,8 +52,23 @@
 .timeBox.currentHour {
     color: #ffffff;
     font-weight: bold;
+    font-size: 2em;
+
+    box-shadow: 0 0 20px #999;
 }
 
 .timeBox.afterHour {
-    opacity: 25%;
+    opacity: 20%;
+}
+
+@media screen and (max-width: 800px) {
+    .timeBox {
+        width: 24em;
+        color: transparent;
+        text-shadow: none;
+    }
+
+    .timeBox.currentHour {
+        font-size: 3vw;
+    }
 }

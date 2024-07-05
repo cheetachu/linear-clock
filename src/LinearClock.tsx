@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
+interface ILinearClock {
+    date: Date;
+}
 
-function LinearClock() {
-    const [date, setDate] = useState(new Date());
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setDate(new Date());
-        }, 1000);
-
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
-
+function LinearClock({ date }: ILinearClock) {
     const timeGridBoxes = [...Array(24)].map((_, i) => {
         let hourClass = "";
         if (date.getHours() === i) {
@@ -21,7 +11,11 @@ function LinearClock() {
             hourClass = " afterHour";
         }
 
-        return <div className={"timeBox" + hourClass}>{i}</div>;
+        return (
+            <div className={"timeBox" + hourClass} key={"hourBox-" + i}>
+                {i}
+            </div>
+        );
     });
 
     return <div className="timeGrid">{timeGridBoxes}</div>;
