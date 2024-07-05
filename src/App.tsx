@@ -19,11 +19,27 @@ function App() {
     const queryParams = new URLSearchParams(window.location.search);
     const startHour = parseInt(queryParams.get("startHour") ?? "");
     const endHour = parseInt(queryParams.get("endHour") ?? "");
+    const separators = queryParams
+        .getAll("separators[]")
+        .map((num) => {
+            return parseInt(num) % 24;
+        })
+        .filter((num) => !Number.isNaN(num));
+    const hideSeparators =
+        queryParams.get("hideSeparators")?.toLowerCase() === "true";
+    const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
 
     return (
         <div className="display-container">
-            <DigitalClock date={date} />
-            <LinearClock date={date} startHour={startHour} endHour={endHour} />
+            <DigitalClock date={date} hour12={hour12} />
+            <LinearClock
+                date={date}
+                startHour={startHour}
+                endHour={endHour}
+                separators={separators}
+                hideSeparators={hideSeparators}
+                hour12={hour12}
+            />
         </div>
     );
 }

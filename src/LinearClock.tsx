@@ -1,14 +1,46 @@
 import { Fragment } from "react/jsx-runtime";
 
 interface ILinearClock {
+    /** Date to show. */
     date: Date;
+
+    /** First hour to show. (Can wrap across days).*/
     startHour?: number;
+
+    /** Last hour to show. (Can wrap across days).*/
     endHour?: number;
+
+    /** Separators appear after specified hours. */
+    separators?: number[];
+
+    /** Should separators be hidden? */
+    hideSeparators?: boolean;
+
+    /** If true, use 12-hour clock. */
+    hour12?: boolean;
 }
 
-function LinearClock({ date, startHour, endHour }: ILinearClock) {
-    const separators = [5, 11, 17];
+function LinearClock({
+    date,
+    startHour,
+    endHour,
+    separators,
+    hideSeparators,
+    hour12,
+}: ILinearClock) {
+    // Validate and defaults as needed
+    if (hideSeparators) {
+        separators = [];
+    } else if (!separators || separators.length === 0) {
+        separators = [11, 17];
+    }
 
+    if (!startHour) {
+        startHour = 6;
+    }
+    if (!endHour) {
+        endHour = 22;
+    }
     startHour = _getValidHour(startHour);
     endHour = _getValidHour(endHour);
 
@@ -19,6 +51,7 @@ function LinearClock({ date, startHour, endHour }: ILinearClock) {
     }
     hours.push(endHour);
 
+    // Create boxes
     const timeBoxes = hours.map((hour) => {
         let hourClass = "";
         if (date.getHours() === hour) {

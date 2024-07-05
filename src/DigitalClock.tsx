@@ -1,17 +1,21 @@
 interface IDigitalClock {
     date: Date;
+    hour12?: boolean;
 }
 
-function DigitalClock({ date }: IDigitalClock) {
-    const hour = ("0" + date.getHours()).slice(-2);
-    const min = ("0" + date.getMinutes()).slice(-2);
+function DigitalClock({ date, hour12 }: IDigitalClock) {
+    const locale = navigator.languages[0] ?? "en-US";
 
     return (
         <div className="digital-container">
             <div className="digitalClock">
-                {hour}:{min}
+                {date.toLocaleString(locale, {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: hour12,
+                })}
             </div>
-            <div className="calendarDate"> {date.toLocaleDateString()}</div>
+            <div className="calendarDate">{date.toLocaleDateString()}</div>
         </div>
     );
 }
