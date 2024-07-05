@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "hompage": "http://cheetachu.github.io/linear-clock",
+  "homepage": "http://cheetachu.github.io/linear-clock",
   "scripts": {
     "dev": "vite",
     "predeploy": "vite build",
