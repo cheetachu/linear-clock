@@ -1,5 +1,7 @@
 # linear-clock
 
+![alt text](./public/clock-sample.png)
+
 A time-blindness accessible linear clock.
 
 The clock is available at https://cheetahchu.github.io/linear-clock/
