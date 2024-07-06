@@ -97,9 +97,9 @@ function LinearClock({
 
     return (
         <div className="timeBox-container">
-            <div className="endMark">▏</div>
+            <div className="endMark">●</div>
             {timeBoxes}
-            <div className="endMark">▕</div>
+            <div className="endMark">●</div>
         </div>
     );
 }
