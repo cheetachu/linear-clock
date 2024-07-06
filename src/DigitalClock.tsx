@@ -15,7 +15,14 @@ function DigitalClock({ date, hour12 }: IDigitalClock) {
                     hour12: hour12,
                 })}
             </div>
-            <div className="calendarDate">{date.toLocaleDateString()}</div>
+            <div className="calendarDate">
+                {date.toLocaleDateString(locale, {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                })}
+            </div>
         </div>
     );
 }
