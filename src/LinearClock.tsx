@@ -41,11 +41,22 @@ function LinearClock({
 
     // Create boxes
     const timeBoxes = _getWakingHourArray(startHour, endHour).map((hour) => {
+        // Minimum percent on the time box - to avoid completely empty state (can be confused for full)
+        const MIN_HOUR_PERCENT = 3;
+        // Minimum opacity of dimmer (to avoid fully invisible box)
+        const MIN_OPACITY_PERCENT = 40;
+        // Higher values produce darker dimmed side of time box
+        const DIMMER_WEIGHT = 0.7;
+
         const isCurrentHour = date.getHours() === hour;
         const displayHour = _getDisplayHour(hour, hour12);
-        const hourPercent =
-            Math.round((1 - date.getMinutes() / 60) * 100) + "%";
+        const hourPercent = Math.max(
+            Math.ceil((date.getMinutes() / 60) * 100),
+            MIN_HOUR_PERCENT
+        );
+        const invertedHourPercent = 100 - hourPercent;
 
+        // Determine timebox type
         let hourClasses = ["timeBox"];
         if (isCurrentHour) {
             hourClasses.push("currentHour");
@@ -62,12 +73,21 @@ function LinearClock({
                 <div className={hourClasses.join(" ")}>
                     <div className="timeNumber">{displayHour}</div>
                     {isCurrentHour && (
-                        <div
-                            className="timePercent"
-                            style={{
-                                width: hourPercent,
-                            }}
-                        ></div>
+                        <>
+                            <div
+                                className="timePercent"
+                                style={{
+                                    width: invertedHourPercent + "%",
+                                    /* Set darker values when smaller amount of box filled
+                                    (to avoid confusing full with empty). Gets lighter as it fills */
+                                    opacity:
+                                        Math.max(
+                                            invertedHourPercent * DIMMER_WEIGHT,
+                                            MIN_OPACITY_PERCENT
+                                        ) + "%",
+                                }}
+                            ></div>
+                        </>
                     )}
                 </div>
                 {separators.includes(hour) && <div className="separator"></div>}
