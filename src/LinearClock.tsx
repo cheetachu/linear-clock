@@ -90,12 +90,18 @@ function LinearClock({
                         </>
                     )}
                 </div>
-                {separators.includes(hour) && <div className="separator"></div>}
+                {separators.includes(hour) && <div className="separator" />}
             </Fragment>
         );
     });
 
-    return <div className="timeBox-container">{timeBoxes}</div>;
+    return (
+        <div className="timeBox-container">
+            <div className="endMark">▏</div>
+            {timeBoxes}
+            <div className="endMark">▕</div>
+        </div>
+    );
 }
 
 function _getValidHour(hour: number | undefined, defaultNum: number) {

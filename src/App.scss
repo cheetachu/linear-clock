@@ -147,6 +147,11 @@ a:hover {
         width: 1em;
         height: 100%;
     }
+
+    .endMark {
+        font-size: 1.5em;
+        color: $color-secondary;
+    }
 }
 
 @media screen and (max-width: 800px) {
