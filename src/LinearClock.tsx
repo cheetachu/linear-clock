@@ -26,7 +26,7 @@ function LinearClock({
     // Prepare parameters
     separators = _getValidSeparators(separators, hideSeparators);
     startHour = _getValidHour(startHour, 6);
-    endHour = _getValidHour(endHour, 22);
+    endHour = _getValidHour(endHour, 21);
 
     // If we are outside of waking hours...
     const nightMode = _isSleepHour(date.getHours(), startHour, endHour);
