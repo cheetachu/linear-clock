@@ -9,7 +9,7 @@ function App() {
     useEffect(() => {
         const timer = setInterval(() => {
             setDate(new Date());
-        }, 60000);
+        }, 15000);
 
         return () => {
             clearInterval(timer);
