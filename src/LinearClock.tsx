@@ -1,4 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
+import { calcWiggle } from "./utils";
 
 interface ILinearClock {
     /** Date to show. */
