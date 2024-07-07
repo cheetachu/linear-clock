@@ -29,20 +29,23 @@ function LinearClock({
     endHour = _getValidHour(endHour, 21);
 
     // If we are outside of waking hours...
+    const origStartHour = startHour;
     const nightMode = _isSleepHour(date.getHours(), startHour, endHour);
     if (nightMode) {
         // Override separators to mark waking hours
-        separators = [startHour, endHour];
+        separators = [startHour - 1];
 
         // Show entire day
-        startHour = 0;
-        endHour = 23;
+        startHour = endHour;
+        endHour = (endHour + 23) % 24;
     }
 
+    // Construct array with hours, in order of display
     const hoursArray = _getHoursArray(startHour, endHour);
     const currHourIndex = hoursArray.findIndex(
         (num) => num === date.getHours()
     );
+    const startHourIndex = hoursArray.findIndex((num) => num === origStartHour);
 
     // Create boxes
     const timeBoxes = hoursArray.map((hour, i) => {
@@ -54,24 +57,22 @@ function LinearClock({
         const DIMMER_WEIGHT = 0.7;
 
         const displayHour = _getDisplayHour(hour, hour12);
-        const hourPercent = Math.max(
-            Math.ceil((date.getMinutes() / 60) * 100),
+        const hourPercent = _getHourPercent(
+            date.getMinutes(),
             MIN_HOUR_PERCENT
         );
         const invertedHourPercent = 100 - hourPercent;
 
-        // Determine timebox type
+        // Determine timebox types
         let hourClasses = ["timeBox"];
         if (currHourIndex === i) {
             hourClasses.push("currentHour");
-        } else {
-            if (nightMode) {
-                hourClasses.push("sleepHour");
-            } else if (currHourIndex < i) {
-                hourClasses.push("afterHour");
-            }
+        } else if (currHourIndex < i) {
+            hourClasses.push("afterHour");
         }
-        console.log(hour + " " + i);
+        if (nightMode) {
+            hourClasses.push(i < startHourIndex ? "sleepHour" : "wakeHour");
+        }
 
         return (
             <Fragment key={"timebox-" + hour}>
@@ -149,6 +150,10 @@ function _getDisplayHour(hour: number, hour12: boolean) {
         displayHour = hour;
     }
     return displayHour;
+}
+
+function _getHourPercent(minute: number, minPercent: number) {
+    return Math.max(Math.ceil((minute / 60) * 100), minPercent);
 }
 
 export default LinearClock;

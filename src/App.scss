@@ -3,7 +3,7 @@ $color-primary: #ffffff;
 $color-secondary: #a9a9a9;
 $color-shadow: #000000;
 $color-glow: #999999;
-$rainbow: linear-gradient(
+$background-rainbow: linear-gradient(
     90deg,
     rgba(255, 0, 0, 1) 0%,
     rgba(255, 154, 0, 1) 10%,
@@ -16,6 +16,20 @@ $rainbow: linear-gradient(
     rgba(186, 12, 248, 1) 80%,
     rgba(251, 7, 217, 1) 90%,
     rgba(255, 0, 0, 1) 100%
+);
+$background-night: linear-gradient(
+    90deg,
+    #378eb0ff 1%,
+    #6068c7ff 10%,
+    #5555c7ff 20%,
+    #4e4ebaff 30%,
+    #3b4a8dff 40%,
+    #3d3a95ff 50%,
+    #343492ff 60%,
+    #28318eff 70%,
+    #642289ff 80%,
+    #7c2887ff 90%,
+    #901d98ff 98%
 );
 
 body {
@@ -108,10 +122,17 @@ a:hover {
         text-align: center;
         color: $color-secondary;
 
-        background: $rainbow;
-        background-size: cover;
-        background-position: center;
+        background: $background-rainbow;
         background-attachment: fixed;
+        background-size: cover;
+
+        &:last-child:not(.wakeHour) {
+            opacity: 25%;
+        }
+
+        .timeNumber {
+            z-index: 1;
+        }
 
         .timePercent {
             position: absolute;
@@ -121,29 +142,35 @@ a:hover {
             background: $color-darkbg;
         }
 
-        .timeNumber {
-            z-index: 1;
+        &.currentHour {
+            position: relative;
+
+            height: 100%;
+
+            box-shadow: 0 0 20px $color-glow;
+            color: $color-primary;
+            font-weight: bold;
+            font-size: 1.5em;
         }
-    }
 
-    .timeBox:last-child {
-        opacity: 25%;
-    }
+        &.sleepHour {
+            background: $background-night;
+            background-attachment: fixed;
+        }
 
-    .currentHour {
-        position: relative;
+        &.afterHour {
+            opacity: 20%;
+            &.wakeHour {
+                opacity: 50%;
+            }
+        }
 
-        height: 100%;
-
-        box-shadow: 0 0 20px $color-glow;
-        color: $color-primary;
-        font-weight: bold;
-        font-size: 1.5em;
-    }
-
-    .afterHour,
-    .sleepHour {
-        opacity: 20%;
+        &.sleepHour {
+            opacity: 30%;
+            &.currentHour {
+                opacity: 100%;
+            }
+        }
     }
 
     .separator {
