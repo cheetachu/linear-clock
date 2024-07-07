@@ -39,8 +39,13 @@ function LinearClock({
         endHour = 23;
     }
 
+    const hoursArray = _getHoursArray(startHour, endHour);
+    const currHourIndex = hoursArray.findIndex(
+        (num) => num === date.getHours()
+    );
+
     // Create boxes
-    const timeBoxes = _getWakingHourArray(startHour, endHour).map((hour) => {
+    const timeBoxes = hoursArray.map((hour, i) => {
         // Minimum percent on the time box - to avoid completely empty state (can be confused for full)
         const MIN_HOUR_PERCENT = 3;
         // Minimum opacity of dimmer (to avoid fully invisible box)
@@ -48,7 +53,6 @@ function LinearClock({
         // Higher values produce darker dimmed side of time box
         const DIMMER_WEIGHT = 0.7;
 
-        const isCurrentHour = date.getHours() === hour;
         const displayHour = _getDisplayHour(hour, hour12);
         const hourPercent = Math.max(
             Math.ceil((date.getMinutes() / 60) * 100),
@@ -58,21 +62,22 @@ function LinearClock({
 
         // Determine timebox type
         let hourClasses = ["timeBox"];
-        if (isCurrentHour) {
+        if (currHourIndex === i) {
             hourClasses.push("currentHour");
         } else {
             if (nightMode) {
                 hourClasses.push("sleepHour");
-            } else if (date.getHours() < hour) {
+            } else if (currHourIndex < i) {
                 hourClasses.push("afterHour");
             }
         }
+        console.log(hour + " " + i);
 
         return (
             <Fragment key={"timebox-" + hour}>
                 <div className={hourClasses.join(" ")}>
                     <div className="timeNumber">{displayHour}</div>
-                    {isCurrentHour && (
+                    {currHourIndex === i && (
                         <>
                             <div
                                 className="timePercent"
@@ -124,7 +129,7 @@ function _isSleepHour(hour: number, startHour: number, endHour: number) {
     return (24 + hour - startHour) % 24 > (24 + endHour - startHour) % 24;
 }
 
-function _getWakingHourArray(startHour: number, endHour: number) {
+function _getHoursArray(startHour: number, endHour: number) {
     let hours: number[] = [];
     for (let i = 0; (startHour + i) % 24 !== endHour; i++) {
         hours.push((startHour + i) % 24);
