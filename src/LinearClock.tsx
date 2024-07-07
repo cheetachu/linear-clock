@@ -95,13 +95,7 @@ function LinearClock({
         );
     });
 
-    return (
-        <div className="timeBox-container">
-            <div className="endMark">●</div>
-            {timeBoxes}
-            <div className="endMark">●</div>
-        </div>
-    );
+    return <div className="timeBox-container">{timeBoxes}</div>;
 }
 
 function _getValidHour(hour: number | undefined, defaultNum: number) {

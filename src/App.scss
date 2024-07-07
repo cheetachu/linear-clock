@@ -126,6 +126,10 @@ a:hover {
         }
     }
 
+    .timeBox:last-child {
+        opacity: 25%;
+    }
+
     .currentHour {
         position: relative;
 
@@ -146,12 +150,6 @@ a:hover {
         background-color: $color-primary;
         width: 1em;
         height: 100%;
-    }
-
-    .endMark {
-        font-size: 1.5em;
-        color: $color-secondary;
-        margin: 0.5em;
     }
 }
 
