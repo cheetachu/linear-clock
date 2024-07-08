@@ -77,6 +77,7 @@ a:hover {
     top: 0;
     right: 0;
     margin: 1em;
+    text-shadow: 1px 1px 1px $color-darkbg;
 }
 
 .display-container {
@@ -96,6 +97,8 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-shadow: 1px 1px 1px $color-darkbg;
+    filter: drop-shadow(0px 0px 3px $color-darkbg);
 
     .digitalClock {
         font-size: 4em;
@@ -110,83 +113,102 @@ a:hover {
 .timeBox-container {
     width: 80%;
 
+    padding: 1em;
+
     display: flex;
     flex: 1;
     justify-content: space-evenly;
     align-items: center;
     gap: 0.5em;
+    filter: drop-shadow(0px 0px 0.2em $color-darkbg);
 
-    .timeBox {
-        position: relative;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .timeBox-bg {
+        background-color: $color-darkbg;
 
         height: 80%;
         width: 100%;
 
-        font-size: 1.25em;
-        text-shadow: 0.1em 0.1em 0.125em $color-shadow;
-        text-align: center;
-        color: $color-secondary;
+        position: relative;
+        display: flex;
 
-        background: $background-rainbow;
-        background-attachment: fixed;
-        background-size: cover;
-
-        &:last-child:not(.wakeHour) {
-            opacity: 25%;
-        }
-
-        .timeNumber {
-            z-index: 1;
-        }
-
-        .timePercent {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            background: $color-darkbg;
-        }
-
-        &.currentHour {
-            position: relative;
+        .timeBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
             height: 100%;
+            width: 100%;
 
-            box-shadow: 0 0 20px $color-glow;
-            color: $color-primary;
-            font-weight: bold;
-            font-size: 1.5em;
-        }
+            font-size: 1.25em;
+            text-shadow: 0.1em 0.1em 0.125em $color-shadow;
+            text-align: center;
+            color: $color-secondary;
 
-        &.sleepHour {
-            background: $background-night;
+            background: $background-rainbow;
             background-attachment: fixed;
-        }
+            background-size: cover;
 
-        &.afterHour {
-            opacity: 20%;
-            &.wakeHour {
-                opacity: 50%;
+            box-shadow: 2px 2px 0 0 $color-darkbg;
+
+            .timeNumber {
+                z-index: 1;
             }
-        }
 
-        &.sleepHour {
-            opacity: 30%;
+            .timePercent {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: $color-darkbg;
+            }
+
             &.currentHour {
-                opacity: 100%;
+                position: relative;
+                box-shadow: 0 0 20px $color-glow;
+
+                color: $color-primary;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+
+            &.sleepHour {
+                background: $background-night;
+                background-attachment: fixed;
+            }
+
+            &.afterHour {
+                opacity: 20%;
+                &.wakeHour {
+                    opacity: 50%;
+                }
+            }
+
+            &.sleepHour {
+                opacity: 30%;
+                &.currentHour {
+                    opacity: 100%;
+                }
             }
         }
     }
 
+    .timeBox-bg:has(.currentHour) {
+        height: 100%;
+    }
+
+    .timeBox-bg:last-child {
+        .timeBox {
+            opacity: 25%;
+        }
+    }
+
     .separator {
-        background-color: $color-secondary;
         width: 10px;
         height: 100%;
+
+        background-color: $color-secondary;
+        box-shadow: 1px 1px 1px $color-darkbg;
     }
 }
 

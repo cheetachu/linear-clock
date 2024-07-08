@@ -41,9 +41,11 @@ function App() {
     const hideSeparators =
         queryParams.get("hideSeparators")?.toLowerCase() === "true";
     const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
-    const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
     const disableWiggle = queryParams.get("wiggle")?.toLowerCase() !== "false";
     const background = queryParams.get("background")?.toLowerCase() !== "false";
+    const hideDigital =
+        queryParams.get("hideDigital")?.toLowerCase() === "true";
+    const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
 
     return (
         <div
@@ -65,7 +67,7 @@ function App() {
                 )}
             </div>
             <div className="display-container">
-                <DigitalClock date={date} hour12={hour12} />
+                {!hideDigital && <DigitalClock date={date} hour12={hour12} />}
                 <LinearClock
                     date={date}
                     startHour={startHour}

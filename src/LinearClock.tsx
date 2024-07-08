@@ -76,27 +76,30 @@ function LinearClock({
         }
 
         return (
-            <Fragment key={"timebox-" + hour}>
+            <Fragment key={"timeBox-" + hour}>
                 {separators.includes(hour) && <div className="separator" />}
-                <div className={hourClasses.join(" ")}>
-                    <div className="timeNumber">{displayHour}</div>
-                    {currHourIndex === i && (
-                        <>
-                            <div
-                                className="timePercent"
-                                style={{
-                                    width: invertedHourPercent + "%",
-                                    /* Set darker values when smaller amount of box filled
+                <div className="timeBox-bg">
+                    <div className={hourClasses.join(" ")}>
+                        <div className="timeNumber">{displayHour}</div>
+                        {currHourIndex === i && (
+                            <>
+                                <div
+                                    className="timePercent"
+                                    style={{
+                                        width: invertedHourPercent + "%",
+                                        /* Set darker values when smaller amount of box filled
                                     (to avoid confusing full with empty). Gets lighter as it fills */
-                                    opacity:
-                                        Math.max(
-                                            invertedHourPercent * DIMMER_WEIGHT,
-                                            MIN_OPACITY_PERCENT
-                                        ) + "%",
-                                }}
-                            ></div>
-                        </>
-                    )}
+                                        opacity:
+                                            Math.max(
+                                                invertedHourPercent *
+                                                    DIMMER_WEIGHT,
+                                                MIN_OPACITY_PERCENT
+                                            ) + "%",
+                                    }}
+                                ></div>
+                            </>
+                        )}
+                    </div>
                 </div>
             </Fragment>
         );
