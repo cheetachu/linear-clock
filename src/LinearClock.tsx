@@ -51,7 +51,7 @@ function LinearClock({
     // Create boxes
     const timeBoxes = hoursArray.map((hour, i) => {
         // Minimum percent on the time box - to avoid completely empty state (can be confused for full)
-        const MIN_HOUR_PERCENT = 3;
+        const MIN_HOUR_PERCENT = 2;
         // Minimum opacity of dimmer (to avoid fully invisible box)
         const MIN_OPACITY_PERCENT = 40;
         // Higher values produce darker dimmed side of time box
