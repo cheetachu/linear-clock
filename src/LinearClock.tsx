@@ -37,7 +37,7 @@ function LinearClock({
         separators = [startHour - 1];
 
         // Show entire day, starting from the first hour of sleep
-        startHour = endHour;
+        startHour = (endHour + 1) % 24;
         endHour = (endHour + 23) % 24;
     }
 
