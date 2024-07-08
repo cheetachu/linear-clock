@@ -9,6 +9,9 @@ function App() {
     const WIGGLE_INTERVAL = 10 * 60;
 
     const [date, setDate] = useState(new Date());
+    const [wiggle, setWiggle] = useState(0);
+
+    const wiggleAmount = Math.round(window.innerWidth * 0.0025);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -20,8 +23,11 @@ function App() {
         };
     }, []);
 
-    const wiggleAmount = Math.round(window.innerWidth * 0.005);
-    const wiggle = calcWiggle(date, wiggleAmount, WIGGLE_INTERVAL);
+    useEffect(() => {
+        setWiggle(
+            calcWiggle(-wiggleAmount, wiggleAmount, WIGGLE_INTERVAL, date)
+        );
+    }, [date]);
 
     const queryParams = new URLSearchParams(window.location.search);
     const startHour = parseInt(queryParams.get("startHour") ?? "");
