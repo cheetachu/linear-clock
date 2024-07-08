@@ -47,7 +47,9 @@ function App() {
 
     return (
         <div
-            className={"app-container" + (!background ? " noBackground" : "")}
+            className={
+                "app-container " + (!background ? "noBackground" : "background")
+            }
             style={{
                 paddingLeft: disableWiggle ? 0 : wiggle + "px",
             }}

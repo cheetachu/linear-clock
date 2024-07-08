@@ -50,10 +50,12 @@ body {
     width: 100%;
     height: 100vh;
 
-    background-color: $color-darkbg;
-
     display: flex;
     align-items: center;
+
+    .background {
+        background-color: $color-darkbg;
+    }
 
     .noBackground {
         background-color: transparent;
