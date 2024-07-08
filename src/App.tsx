@@ -72,6 +72,7 @@ function App() {
                 className="display-container"
                 style={{
                     height: fillMode ? "100%" : undefined,
+                    width: fillMode ? "100%" : undefined,
                     maxHeight: fillMode ? "100%" : undefined,
                 }}
             >

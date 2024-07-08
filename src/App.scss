@@ -51,6 +51,7 @@ body {
     height: 100vh;
 
     display: flex;
+    justify-content: center;
 
     .background {
         background-color: $color-darkbg;
@@ -80,7 +81,7 @@ a:hover {
 }
 
 .display-container {
-    width: 100%;
+    width: 80%;
     height: 50%;
     max-height: 17em;
 
@@ -112,7 +113,7 @@ a:hover {
 }
 
 .timeBox-container {
-    width: 80%;
+    width: 100%;
 
     display: flex;
     flex: 1;
