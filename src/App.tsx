@@ -30,36 +30,40 @@ function App() {
     }, [date]);
 
     const queryParams = new URLSearchParams(window.location.search);
+
     const startHour = parseInt(queryParams.get("startHour") ?? "");
     const endHour = parseInt(queryParams.get("endHour") ?? "");
+    const showSeparators =
+        queryParams.get("separators")?.toLowerCase() !== "false";
     const separators = queryParams
         .getAll("separators[]")
         .map((num) => {
             return parseInt(num) % 24;
         })
         .filter((num) => !Number.isNaN(num));
-    const hideSeparators =
-        queryParams.get("hideSeparators")?.toLowerCase() === "true";
     const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
-    const disableWiggle = queryParams.get("wiggle")?.toLowerCase() !== "false";
-    const background = queryParams.get("background")?.toLowerCase() !== "false";
-    const hideDigital =
-        queryParams.get("hideDigital")?.toLowerCase() === "true";
-    const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
+    const showBackground =
+        queryParams.get("background")?.toLowerCase() !== "false";
+    const showDigital = queryParams.get("digital")?.toLowerCase() !== "false";
+    const showHelp = queryParams.get("help")?.toLowerCase() !== "false";
     const fillMode = queryParams.get("fillMode")?.toLowerCase() === "true";
+    const enableWiggle = queryParams.get("wiggle")?.toLowerCase() !== "false";
+    const showNumbers =
+        queryParams.get("offNumbers")?.toLowerCase() !== "false";
 
     return (
         <div
             className={
-                "app-container " + (!background ? "noBackground" : "background")
+                "app-container " +
+                (showBackground ? "background" : "noBackground")
             }
             style={{
-                paddingLeft: disableWiggle ? 0 : wiggle + "px",
+                paddingLeft: enableWiggle ? wiggle + "px" : 0,
                 alignItems: fillMode ? "start" : "center",
             }}
         >
             <div id="toolbar">
-                {!hideHelp && (
+                {showHelp && (
                     <a
                         href="https://github.com/cheetahchu/linear-clock?tab=readme-ov-file#readme"
                         target="_blank"
@@ -76,13 +80,14 @@ function App() {
                     maxHeight: fillMode ? "100%" : undefined,
                 }}
             >
-                {!hideDigital && <DigitalClock date={date} hour12={hour12} />}
+                {showDigital && <DigitalClock date={date} hour12={hour12} />}
                 <LinearClock
                     date={date}
                     startHour={startHour}
                     endHour={endHour}
                     separators={separators}
-                    hideSeparators={hideSeparators}
+                    showSeparators={showSeparators}
+                    showNumbers={showNumbers}
                     hour12={hour12}
                 />
             </div>

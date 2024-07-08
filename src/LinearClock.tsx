@@ -1,5 +1,4 @@
 import { Fragment } from "react/jsx-runtime";
-import { calcWiggle } from "./utils";
 
 interface ILinearClock {
     /** Date to show. */
@@ -11,7 +10,9 @@ interface ILinearClock {
     /** Separators appear after specified hours. */
     separators?: number[];
     /** Should separators be hidden? */
-    hideSeparators?: boolean;
+    showSeparators?: boolean;
+    /** Should we show numbers on the linear clock, besides the current hour? */
+    showNumbers?: boolean;
     /** If true, use 12-hour clock. */
     hour12?: boolean;
 }
@@ -21,11 +22,12 @@ function LinearClock({
     startHour,
     endHour,
     separators,
-    hideSeparators,
+    showSeparators = true,
+    showNumbers = true,
     hour12 = false,
 }: ILinearClock) {
     // Prepare parameters
-    separators = _getValidSeparators(separators, hideSeparators);
+    separators = _getValidSeparators(separators, showSeparators);
     startHour = _getValidHour(startHour, 6);
     endHour = _getValidHour(endHour, 21);
 
@@ -80,7 +82,9 @@ function LinearClock({
                 {separators.includes(hour) && <div className="separator" />}
                 <div className="timeBox-bg">
                     <div className={hourClasses.join(" ")}>
-                        <div className="timeNumber">{displayHour}</div>
+                        {(showNumbers || currHourIndex === i) && (
+                            <div className="timeNumber">{displayHour}</div>
+                        )}
                         {currHourIndex === i && (
                             <>
                                 <div
@@ -120,8 +124,8 @@ function _getValidHour(hour: number | undefined, defaultNum: number) {
     }
 }
 
-function _getValidSeparators(separators?: number[], hideSeparators?: boolean) {
-    if (hideSeparators) {
+function _getValidSeparators(separators?: number[], showSeparators?: boolean) {
+    if (!showSeparators) {
         return [];
     } else if (!separators || separators.length === 0) {
         return [9, 12, 17];
