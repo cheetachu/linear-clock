@@ -6,7 +6,7 @@ import { calcWiggle } from "./utils";
 
 function App() {
     // Interval in seconds before wiggling one pixel over
-    const WIGGLE_INTERVAL = 1;
+    const WIGGLE_INTERVAL = 10 * 60;
 
     const [date, setDate] = useState(new Date());
     const [wiggle, setWiggle] = useState(0);
