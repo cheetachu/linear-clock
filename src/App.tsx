@@ -5,8 +5,6 @@ import DigitalClock from "./DigitalClock";
 import { calcWiggle } from "./utils";
 
 function App() {
-    // Pixels to wiggle interface to help prevent screen burn
-    const WIGGLE_AMOUNT = 25;
     // Interval in seconds before wiggling one pixel over
     const WIGGLE_INTERVAL = 10 * 60;
 
@@ -22,7 +20,8 @@ function App() {
         };
     }, []);
 
-    const wiggle = calcWiggle(date, WIGGLE_AMOUNT, WIGGLE_INTERVAL);
+    const wiggleAmount = Math.round(window.innerWidth * 0.005);
+    const wiggle = calcWiggle(date, wiggleAmount, WIGGLE_INTERVAL);
 
     const queryParams = new URLSearchParams(window.location.search);
     const startHour = parseInt(queryParams.get("startHour") ?? "");
