@@ -42,12 +42,15 @@ function App() {
         queryParams.get("hideSeparators")?.toLowerCase() === "true";
     const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
     const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
-    const disableWiggle = queryParams.get("wiggle")?.toLowerCase() === "false";
+    const disableWiggle = queryParams.get("wiggle")?.toLowerCase() !== "false";
+    const background = queryParams.get("background")?.toLowerCase() !== "false";
 
     return (
         <div
-            className="app-container"
-            style={disableWiggle ? {} : { paddingLeft: wiggle + "px" }}
+            className={"app-container" + (!background ? " noBackground" : "")}
+            style={{
+                paddingLeft: disableWiggle ? 0 : wiggle + "px",
+            }}
         >
             <div id="toolbar">
                 {!hideHelp && (
