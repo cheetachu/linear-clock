@@ -46,6 +46,7 @@ function App() {
     const hideDigital =
         queryParams.get("hideDigital")?.toLowerCase() === "true";
     const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
+    const centerClock = queryParams.get("hideHelp")?.toLowerCase() !== "false";
 
     return (
         <div
@@ -54,6 +55,7 @@ function App() {
             }
             style={{
                 paddingLeft: disableWiggle ? 0 : wiggle + "px",
+                alignItems: centerClock ? "center" : "start",
             }}
         >
             <div id="toolbar">
