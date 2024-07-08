@@ -38,10 +38,7 @@ function App() {
     const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
 
     return (
-        <div
-            className="app-container"
-            style={{ marginLeft: wiggle, marginTop: wiggle }}
-        >
+        <div className="app-container" style={{ paddingLeft: wiggle + "px" }}>
             <div id="toolbar">
                 {!hideHelp && (
                     <a
