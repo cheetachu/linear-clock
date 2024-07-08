@@ -6,7 +6,7 @@ import { calcWiggle } from "./utils";
 
 function App() {
     // Interval in seconds before wiggling one pixel over
-    const WIGGLE_INTERVAL = 10 * 60;
+    const WIGGLE_INTERVAL = 1;
 
     const [date, setDate] = useState(new Date());
     const [wiggle, setWiggle] = useState(0);
@@ -42,9 +42,13 @@ function App() {
         queryParams.get("hideSeparators")?.toLowerCase() === "true";
     const hour12 = queryParams.get("hour12")?.toLowerCase() === "true";
     const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
+    const disableWiggle = queryParams.get("wiggle")?.toLowerCase() === "false";
 
     return (
-        <div className="app-container" style={{ paddingLeft: wiggle + "px" }}>
+        <div
+            className="app-container"
+            style={disableWiggle ? {} : { paddingLeft: wiggle + "px" }}
+        >
             <div id="toolbar">
                 {!hideHelp && (
                     <a
