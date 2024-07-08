@@ -13,7 +13,7 @@ function App() {
     useEffect(() => {
         const timer = setInterval(() => {
             setDate(new Date());
-        }, 10 * 60);
+        }, 1 * 60);
 
         return () => {
             clearInterval(timer);
