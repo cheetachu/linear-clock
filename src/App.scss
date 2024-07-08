@@ -35,8 +35,6 @@ $background-night: linear-gradient(
 body {
     margin: 0;
 
-    background-color: $color-darkbg;
-
     font-family: sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -54,6 +52,14 @@ body {
 
     display: flex;
     align-items: center;
+
+    .background {
+        background-color: $color-darkbg;
+    }
+
+    .noBackground {
+        background-color: transparent;
+    }
 }
 
 a {
