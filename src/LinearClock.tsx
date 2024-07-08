@@ -77,6 +77,7 @@ function LinearClock({
 
         return (
             <Fragment key={"timebox-" + hour}>
+                {separators.includes(hour) && <div className="separator" />}
                 <div className={hourClasses.join(" ")}>
                     <div className="timeNumber">{displayHour}</div>
                     {currHourIndex === i && (
@@ -97,7 +98,6 @@ function LinearClock({
                         </>
                     )}
                 </div>
-                {separators.includes(hour) && <div className="separator" />}
             </Fragment>
         );
     });
@@ -121,7 +121,7 @@ function _getValidSeparators(separators?: number[], hideSeparators?: boolean) {
     if (hideSeparators) {
         return [];
     } else if (!separators || separators.length === 0) {
-        return [11, 17];
+        return [9, 12, 17];
     } else {
         return separators;
     }
