@@ -46,7 +46,7 @@ function App() {
     const hideDigital =
         queryParams.get("hideDigital")?.toLowerCase() === "true";
     const hideHelp = queryParams.get("hideHelp")?.toLowerCase() === "true";
-    const centerClock = queryParams.get("hideHelp")?.toLowerCase() !== "false";
+    const fillMode = queryParams.get("fillMode")?.toLowerCase() === "true";
 
     return (
         <div
@@ -55,7 +55,7 @@ function App() {
             }
             style={{
                 paddingLeft: disableWiggle ? 0 : wiggle + "px",
-                alignItems: centerClock ? "center" : "start",
+                alignItems: fillMode ? "start" : "center",
             }}
         >
             <div id="toolbar">
@@ -68,7 +68,13 @@ function App() {
                     </a>
                 )}
             </div>
-            <div className="display-container">
+            <div
+                className="display-container"
+                style={{
+                    height: fillMode ? "100%" : undefined,
+                    maxHeight: fillMode ? "100%" : undefined,
+                }}
+            >
                 {!hideDigital && <DigitalClock date={date} hour12={hour12} />}
                 <LinearClock
                     date={date}
