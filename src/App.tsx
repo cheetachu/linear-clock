@@ -65,7 +65,7 @@ function App() {
             <div id="toolbar">
                 {showHelp && (
                     <a
-                        href="https://github.com/cheetahchu/linear-clock?tab=readme-ov-file#readme"
+                        href="https://github.com/cheetachu/linear-clock?tab=readme-ov-file#readme"
                         target="_blank"
                     >
                         Help
