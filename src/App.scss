@@ -213,16 +213,18 @@ a:hover {
 
 @media screen and (max-width: 800px) {
     .timeBox-container {
-        .timeBox {
-            color: transparent;
-            text-shadow: none;
-            font-size: 1vw;
-        }
+        .timeBox-bg {
+            .timeBox {
+                color: transparent;
+                text-shadow: none;
+                font-size: 1vw;
 
-        .timeBox.currentHour {
-            font-size: 3vw;
-            color: $color-primary;
-            text-shadow: 0.1em 0.1em 0.125em $color-shadow;
+                &.currentHour {
+                    font-size: 3vw;
+                    color: $color-primary;
+                    text-shadow: 0.1em 0.1em 0.125em $color-shadow;
+                }
+            }
         }
     }
 }
