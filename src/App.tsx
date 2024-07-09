@@ -62,16 +62,16 @@ function App() {
                 alignItems: fillMode ? "start" : "center",
             }}
         >
-            <div id="toolbar">
-                {showHelp && (
+            {showHelp && (
+                <div id="toolbar">
                     <a
                         href="https://github.com/cheetachu/linear-clock?tab=readme-ov-file#readme"
                         target="_blank"
                     >
                         Help
                     </a>
-                )}
-            </div>
+                </div>
+            )}
             <div
                 className="display-container"
                 style={{
