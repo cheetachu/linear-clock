@@ -1,7 +1,7 @@
 <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
 	<title>lc-icon-svg</title>
 	<defs>
-		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(366,0,0,16.222,64,249.555)">
+		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(366,0,0,48.5,67,246.265)">
 			<stop offset="0" stop-color="#ff4b4b"/>
 			<stop offset=".231" stop-color="#dfff6e"/>
 			<stop offset=".493" stop-color="#4bffdd"/>
@@ -29,19 +29,19 @@
 		<path id="Shape 6" fill-rule="evenodd" class="s1" d="m128 57.6l234.3 377.7z"/>
 		<path id="Shape 7" fill-rule="evenodd" class="s1" d="m440.3 353l-390.6-210.4z"/>
 		<path id="Layer" fill-rule="evenodd" class="s2" d="m248.1 435.8c-105.3 0-190.4-85.1-190.4-190.4 0-105.3 85.1-190.4 190.4-190.4 105.3 0 190.4 85.1 190.4 190.4 0 105.3-85.1 190.4-190.4 190.4z"/>
+		<path id="Layer copy" fill-rule="evenodd" class="s3" d="m125.9 222h248.2c32.5 0 58.9 11 58.9 24.4 0 13.1-26.4 24.1-58.9 24.1h-248.2c-32.5 0-58.9-11-58.9-24.1 0-13.4 26.4-24.4 58.9-24.4z"/>
 	</g>
 	<g id="Layer">
-		<path id="Layer" fill-rule="evenodd" class="s3" d="m122.9 241.4h248.2c32.5 0 58.9 3.7 58.9 8.2 0 4.4-26.4 8.1-58.9 8.1h-248.2c-32.5 0-58.9-3.7-58.9-8.1 0-4.5 26.4-8.2 58.9-8.2z"/>
 	</g>
 	<g id="Layer">
-		<path id="Layer" class="s4" d="m247.5 264.7c-8.4 0-15.2-6.8-15.2-15.2 0-8.4 6.8-15.2 15.2-15.2 8.4 0 15.2 6.8 15.2 15.2 0 8.4-6.8 15.2-15.2 15.2z"/>
+		<path id="Layer" fill-rule="evenodd" class="s4" d="m250 272.1c-14.4 0-26-11.6-26-26 0-14.5 11.6-26.1 26-26.1 14.5 0 26.1 11.6 26.1 26.1 0 14.4-11.6 26-26.1 26z"/>
 	</g>
 	<g id="Layer">
-		<path id="Shape 8" fill-rule="evenodd" class="s5" d="m167.3 241.2l0.2 16z"/>
-		<path id="Shape 9" fill-rule="evenodd" class="s5" d="m201.8 241.5v15.7z"/>
-		<path id="Shape 10" fill-rule="evenodd" class="s5" d="m133.5 241.7l-0.3 16z"/>
-		<path id="Shape 11" fill-rule="evenodd" class="s5" d="m327.5 241.2v15.5z"/>
-		<path id="Shape 12" fill-rule="evenodd" class="s5" d="m294.5 241.5v15.5z"/>
-		<path id="Shape 15" fill-rule="evenodd" class="s6" d="m364.3 242l-0.3 15.6z"/>
+		<path id="Shape 8" fill-rule="evenodd" class="s5" d="m167.3 222l0.2 48.5z"/>
+		<path id="Shape 9" fill-rule="evenodd" class="s5" d="m201.8 222.9v47.6z"/>
+		<path id="Shape 10" fill-rule="evenodd" class="s5" d="m133.5 223.5l-0.3 48.5z"/>
+		<path id="Shape 11" fill-rule="evenodd" class="s5" d="m327.5 222v47z"/>
+		<path id="Shape 12" fill-rule="evenodd" class="s5" d="m294.5 222.9v47z"/>
+		<path id="Shape 15" fill-rule="evenodd" class="s6" d="m364.3 222l-0.3 49.7z"/>
 	</g>
 </svg>
