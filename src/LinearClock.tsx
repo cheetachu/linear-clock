@@ -113,7 +113,7 @@ function LinearClock({
 }
 
 function _getValidHour(hour: number | undefined, defaultNum: number) {
-    if (!hour) {
+    if (!hour || Number.isNaN(hour)) {
         return defaultNum;
     } else if (hour < 0) {
         return 0;

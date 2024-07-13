@@ -197,7 +197,7 @@ a:hover {
     }
 
     .timeBox-bg:last-child {
-        .timeBox:not(.currentHour) {
+        .timeBox:not(.currentHour):not(.wakeHour) {
             opacity: 25%;
         }
     }
